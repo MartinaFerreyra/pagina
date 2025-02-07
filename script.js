@@ -1,8 +1,8 @@
-const carrito = document.getElementById("carrito");
+const carrito = document.getElementById("carrito");// Obtiene el elemento con el ID "carrito", que representa el contenedor del carrito de compras.
 const lista = document.getElementById("lista-carrito");
 const vaciarCarritoBtn = document.getElementById("vaciar-carrito");
-const productos = document.querySelectorAll(".agregar-carrito");
-let productosCarrito = [];
+const productos = document.querySelectorAll(".agregar-carrito");// Selecciona todos los elementos con la clase "agregar-carrito", que son los botones para añadir productos al carrito.
+let productosCarrito = [];// Crea un array vacío para almacenar los productos agregados al carrito.
 
 // Evento para agregar al carrito
 productos.forEach(producto => {
@@ -28,7 +28,7 @@ function mostrarCarrito() {
     limpiarCarrito();
 
     productosCarrito.forEach(producto => {
-        const row = document.createElement("tr");
+        const row = document.createElement("tr");// Crea una nueva fila en la tabla
         row.innerHTML = `
             <td>${producto.nombre}</td>
             <td>${producto.precio}</td>
@@ -44,15 +44,15 @@ function mostrarCarrito() {
 // Función para eliminar un producto del carrito
 function eliminarElemento(e) {
     e.preventDefault();
-    let elemento;
-    let elementoId;
+    let elemento; // Variable para almacenar el elemento HTML que será eliminado.
+    let elementoId; // Variable para almacenar el ID del producto que será eliminado.
 
-    if (e.target.classList.contains("borrar")) {
-        e.target.parentElement.parentElement.remove();
+    if (e.target.classList.contains("borrar")) { // Verifica si el elemento en el que se hizo clic tiene la clase "borrar".
+        e.target.parentElement.parentElement.remove();// Elimina la fila completa de la tabla, subiendo dos niveles en el DOM.
         elemento = e.target.parentElement.parentElement;
-        elementoId = elemento.querySelector("a").getAttribute("data-id");
+        elementoId = elemento.querySelector("a").getAttribute("data-id");// Obtiene el ID del producto desde un enlace dentro de la fila.
 
-        productosCarrito = productosCarrito.filter(producto => producto.id !== elementoId);
+        productosCarrito = productosCarrito.filter(producto => producto.id !== elementoId);// Filtra el array `productosCarrito` para eliminar el producto con el ID correspondiente.
         actualizarTotal();
     }
 }

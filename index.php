@@ -1,3 +1,16 @@
+<?php
+session_start();// Inicia la sesión en PHP para poder acceder a las variables de sesión.
+if (!isset($_SESSION['usuario'])) { // Verifica si la variable de sesión 'usuario' NO está definida.
+    echo '<script>
+            alert("Por favor debes iniciar sesión");
+            window.location = "index.php";
+          </script>';
+    session_destroy();// Destruye cualquier sesión activa para evitar accesos indebidos.
+    die();
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,7 +35,7 @@
 
             <nav class="navbar">
                 <ul>
-                    <li><a href="form.html">Inicio</a></li>
+                    <li><a href="form.php">Inicio</a></li>
                     <li><a href="#">Servicios</a></li>
                     <li><a href="#">Productos</a></li>
                     <li><a href="#">Contacto</a></li>
